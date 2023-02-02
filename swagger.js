@@ -5,8 +5,8 @@ const doc = {
     "title": "MC Database",
     "description": "A Database for Motorcycles",
   },
-  host: 'localhost:8080',
-  schemes: ['http'],
+  host: 'cse341-mc-data.onrender.com',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
