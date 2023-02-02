@@ -1,21 +1,19 @@
 //LOCALHOST 
     GET http://localhost:8080/bikes
-    GET http://localhost:8080/contacts/63b9bce9586401e1360b7da2
-    GET http://localhost:8080/contacts/63b9bda8586401e1360b7da4
-    GET http://localhost:8080/contacts/63b9bdef586401e1360b7da5
-    POST http://localhost:8080/contacts HTTP/1.1
-        {"firstName":"Carissa","lastName":"Marshall","email":"dragonseye@hotmail.com","birthday":"3/13/2000","favColor":"Red"}
-    PUT http://localhost:8080/bikes.js/63cc349755c793a75d6b7fcf HTTP/1.1
-        {"firstName":"Brenda","lastName":"Measom","email":"tsarinalea@gmail.com","birthday":"8/4/2000","favColor":"Pink"}
-    DELETE http://localhost:8080/bikes.js/63cc349755c793a75d6b7fcf HTTP/1.1
+    GET http://localhost:8080/bikes/63d9f51ca383e9d058e12311
+    GET http://localhost:8080/bikes/63d9f579a383e9d058e12312
+    POST http://localhost:8080/bikes HTTP/1.1
+        {"make":"Kawasaki","model":"KLR650","year":"2009","motor":"4-stroke, single","displacement":"651cc","transmission":"5-speed","drive":"Chain","terrain":"Dual Sport"}
+    PUT http://localhost:8080/bikes.js/63d9f51ca383e9d058e12311 HTTP/1.1
+        {"make":"Harley-Davidson","model":"Road Glide","year":"2020","motor":"V-twin","displacement":"107ci","transmission":"6-speed","drive":"Belt","terrain":"Street"}
+    DELETE http://localhost:8080/bikes.js/63d9f579a383e9d058e12312
 
 //PRODUCTION
-    GET https://cse341-l3-bc0t.onrender.com/contacts
-    GET https://cse341-l3-bc0t.onrender.com/contacts/63b9bce9586401e1360b7da2
-    GET https://cse341-l3-bc0t.onrender.com/contacts/63b9bda8586401e1360b7da4
-    GET https://cse341-l3-bc0t.onrender.com/contacts/63b9bdef586401e1360b7da5
-    POST https://cse341-l3-bc0t.onrender.com/contacts HTTP/1.1
-        {"firstName":"Carissa","lastName":"Marshall","email":"dragonseye@hotmail.com","birthday":"3/13/2000","favColor":"Red"}
-    PUT https://cse341-l3-bc0t.onrender.com/contacts63cc349755c793a75d6b7fcf HTTP/1.1
-        {"firstName":"Brenda","lastName":"Measom","email":"tsarinalea@gmail.com","birthday":"8/4/2000","favColor":"Pink"}
-    DELETE https://cse341-l3-bc0t.onrender.com/contacts63cc349755c793a75d6b7fcf HTTP/1.1
+    GET http://localhost:8080/bikes
+    GET http://localhost:8080/bikes/63d9f51ca383e9d058e12311
+    GET http://localhost:8080/bikes/63d9f579a383e9d058e12312
+    POST http://localhost:8080/bikes HTTP/1.1
+        {"make":"Kawasaki","model":"KLR650","year":"2009","motor":"4-stroke, single","displacement":"651cc","transmission":"5-speed","drive":"Chain","terrain":"Dual Sport"}
+    PUT http://localhost:8080/bikes.js/63d9f51ca383e9d058e12311 HTTP/1.1
+        {"make":"Harley-Davidson","model":"Road Glide","year":"2020","motor":"V-twin","displacement":"107ci","transmission":"6-speed","drive":"Belt","terrain":"Street"}
+    DELETE http://localhost:8080/bikes.js/63d9f579a383e9d058e12312
