@@ -5,7 +5,7 @@ const doc = {
     "title": "MC Database",
     "description": "A Database for Motorcycles",
   },
-  host: 'cse341-mc-data.onrender.com',
+  host: 'cse341-l6-um6z.onrender.com',
   schemes: ['https'],
 };
 

@@ -5,7 +5,7 @@
     "description": "A Database for Motorcycles",
     "version": "1.0.0"
   },
-  "host": "cse341-mc-data.onrender.com",
+  "host": "cse341-l6-um6z.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
