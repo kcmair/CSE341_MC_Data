@@ -1,45 +1,46 @@
-const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
+const Bike = require("../models/bikes")
 
 const returnAllBikes = async (req, res) => {
   try {
-    const response = await mongodb
-      .getDb()
-      .db("steel_horses")
-      .collection("mc_data")
-      .find();
-    response.toArray().then((lists) => {
+    Bike.find(function (err, allBikes) {
+      if (err) {
+        res.status(500).json({message: err});
+      }
       res.setHeader("Content-Type", "application/json");
-      res.status(200).json(lists);
+      res.status(200).json(allBikes);
     });
-  } catch (e) {
-    res.status(500).json(e);
+  } catch (err) {
+    res.status(500).json(err);
   }
+
 };
 
 const findBikeById = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  if (!userId) {
-    res.status(400);
-    return;
+  if (!ObjectId.isValid(req.params)) {
+    res.status(400).json("Must use a valid Motorcycle ID.")
   }
+
+  const bikeId = new ObjectId(req.params.id);
   try {
-    const response = await mongodb
-      .getDb()
-        .db("steel_horses")
-        .collection("mc_data")
-      .find({ _id: userId });
-    response.toArray().then((lists) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(lists[0]);
+    Bike.findById(bikeId, function (err, bike) {
+      if (err) {
+        res.status(500).json({message: err});
+      }
+      if (bike) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(bike);
+      } else {
+        res.status(400).json(`Unable to find motorcycle with ID ${bikeId}`)
+      }
     });
-  } catch (e) {
-    res.status(500).json(e);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
 const createBike = async (req, res) => {
-  const bike = {
+  const bike = new Bike ({
     make: req.body.make,
     model: req.body.model,
     year: req.body.year,
@@ -48,59 +49,58 @@ const createBike = async (req, res) => {
     transmission: req.body.transmission,
     drive: req.body.drive,
     terrain: req.body.terrain
-  };
+  });
   try {
-    const response = await mongodb
-      .getDb()
-        .db("steel_horses")
-        .collection("mc_data")
-      .insertOne(bike);
+    const response = await bike.save(function (err) {
+      if (err) {
+        res(500).json(err);
+      }
+    });
     res.status(201).json(response);
-  } catch (e) {
-    res.status(500).json(e);
+  } catch (err) {
+    res.status(500).json(err);
   }
 };
 
 const updateBike = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  const bike = {
-    make: req.body.make,
-    model: req.body.model,
-    year: req.body.year,
-    motor: req.body.motor,
-    displacement: req.body.displacement,
-    transmission: req.body.transmission,
-    drive: req.body.drive,
-    terrain: req.body.terrain
-  };
-  try{
-    const response = await mongodb
-      .getDb()
-        .db("steel_horses")
-        .collection("mc_data")
-      .replaceOne({ _id: userId }, bike);
-    res.status(204).json(response);
-  } catch (e) {
-    res.status(500).json(e);
+  if (!ObjectId.isValid(req.params)) {
+    res.status(400).json("Must use a valid Motorcycle ID.")
+  }
+  const bikeId = new ObjectId(req.params.id);
+  try {
+    const response = await Bike.findOneAndUpdate(bikeId, req.body, {new: true});
+    res.status(200).json(response);
+  } catch (err) {
+    if (err.name === "CastError") {
+      res.status(400).json(err.message);
+    }
+    res.status(500).json(err);
   }
 };
 
 const deleteBike = async (req, res) => {
-  const userId = new ObjectId(req.params.id);
-  if (!userId) {
-    res.status(400);
-    return;
+  console.log("deleteBike")
+  if (!ObjectId.isValid(req.params)) {
+    res.status(400).json("Must use a valid Motorcycle ID.")
   }
-  try{
-    const response = await mongodb
-      .getDb()
-        .db("steel_horses")
-        .collection("mc_data")
-      .deleteOne({ _id: userId }, true);
-    res.status(200).json(response);
-  } catch (e) {
-    res.status(500).json(e)
+  const bikeId = new ObjectId(req.params.id);
+  try {
+    console.log("try")
+    Bike.deleteOne({ _id: bikeId }, function (err, response) {
+      if (err) {
+        console.log("Error1")
+        res(500).json(err);
+      }
+      if (response.deletedCount > 0) {
+        res.status(200).json(response);
+      } else {
+        res.status(404).json(response.error || `Unable to find motorcycle with ID ${bikeId}`)
+      }
+    });
+  } catch (err) {
+    console.log("Error2", err)
+    res.status(500).json(err)
   }
 };
 
-module.exports = { returnAllBikes, findBikeById, createBike, updateBike, deleteBike };
+module.exports = {returnAllBikes, findBikeById, createBike, updateBike, deleteBike};

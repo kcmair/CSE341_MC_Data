@@ -1,31 +1,25 @@
 {
-  "name": "MC_Database",
+  "name": "mc-database",
   "version": "1.0.0",
   "description": "A database for Motorcycles",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "swagger": "node ./swagger.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "author": "Keith Mair",
-  "license": "ISC",
-  "bugs": {
-    "url": ""
+    "prestart": "node ./swagger.js",
+    "start": "nodemon ./server.js"
   },
   "homepage": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.3",
     "express-validator": "^6.14.3",
     "mongodb": "^4.13.0",
-    "swagger-ui-express": "^4.6.0"
+    "mongoose": "^6.9.1",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.6.0",
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

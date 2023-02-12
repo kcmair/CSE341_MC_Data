@@ -1,16 +1,12 @@
-const express = require('express');
-const router = express.Router();
-
+const router = require('express').Router();
 const bikesController = require('../controllers/bikes');
+const validation = require('../middleware/validation-middleware');
 
-router.get('/', bikesController.returnAllBikes);
-
-router.get('/:id', bikesController.findBikeById);
-
-router.post('/', bikesController.createBike);
-
-router.put('/:id', bikesController.updateBike);
-
-router.delete('/:id', bikesController.deleteBike);
+router
+  .get('/', bikesController.returnAllBikes)
+  .get('/:id', bikesController.findBikeById)
+  .post('/', validation.validateBike, bikesController.createBike)
+  .put('/:id', bikesController.updateBike)
+  .delete('/:id', bikesController.deleteBike);
 
 module.exports = router;
