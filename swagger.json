@@ -5,10 +5,10 @@
     "description": "A Database for Motorcycles",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-l6-um6z.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {
@@ -118,42 +118,12 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "make": {
-                  "example": "any"
-                },
-                "model": {
-                  "example": "any"
-                },
-                "year": {
-                  "example": "any"
-                },
-                "motor": {
-                  "example": "any"
-                },
-                "displacement": {
-                  "example": "any"
-                },
-                "transmission": {
-                  "example": "any"
-                },
-                "drive": {
-                  "example": "any"
-                },
-                "terrain": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "400": {
             "description": "Bad Request"
           },
@@ -178,6 +148,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
