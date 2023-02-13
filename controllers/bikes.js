@@ -51,12 +51,12 @@ const createBike = async (req, res) => {
     terrain: req.body.terrain
   });
   try {
-    const response = await bike.save(function (err) {
+    await bike.save(function (err, result) {
       if (err) {
         res(500).json(err);
       }
+      res.status(201).json(`New Motorcycle ID: ${result._id}`);
     });
-    res.status(201).json(response);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -85,7 +85,6 @@ const deleteBike = async (req, res) => {
   }
   const bikeId = new ObjectId(req.params.id);
   try {
-    console.log("try")
     Bike.deleteOne({ _id: bikeId }, function (err, response) {
       if (err) {
         console.log("Error1")
@@ -98,7 +97,6 @@ const deleteBike = async (req, res) => {
       }
     });
   } catch (err) {
-    console.log("Error2", err)
     res.status(500).json(err)
   }
 };
