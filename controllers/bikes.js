@@ -78,8 +78,8 @@ const updateBike = async (req, res) => {
     if (req.body.transmission) { doc.transmission = req.body.transmission }
     if (req.body.drive) { doc.drive = req.body.drive }
     if (req.body.terrain) { doc.terrain = req.body.terrain }
-    const response = await doc.save();
-    res.status(200).json(response);
+    await doc.save();
+    res.status(204).json();
   } catch (err) {
     if (err.name === "CastError") {
       res.status(400).json(err.message);
