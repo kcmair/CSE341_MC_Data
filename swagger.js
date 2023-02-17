@@ -3,12 +3,12 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     "title": "MC Database",
-    "description": "A Database for Motorcycles",
+    "description": "A Database for Motorcycles"
   },
   // host: 'localhost:8080',
-  // schemes: ['http'],
+  // schemes: ['http']
   host: 'cse341-l6-um6z.onrender.com',
-  schemes: ['https'],
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';

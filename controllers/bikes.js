@@ -68,7 +68,17 @@ const updateBike = async (req, res) => {
   }
   const bikeId = new ObjectId(req.params.id);
   try {
-    const response = await Bike.findOneAndUpdate(bikeId, req.body, {new: true});
+    let doc = await Bike.findOne(bikeId);
+    if (!doc) { res.status(404).json(`Motorcycle with ID ${bikeId} not found.`) }
+    if (req.body.make) { doc.make = req.body.make }
+    if (req.body.model) { doc.model = req.body.model }
+    if (req.body.year) { doc.year = req.body.year }
+    if (req.body.motor) { doc.motor = req.body.motor }
+    if (req.body.displacement) { doc.displacement = req.body.displacement }
+    if (req.body.transmission) { doc.transmission = req.body.transmission }
+    if (req.body.drive) { doc.drive = req.body.drive }
+    if (req.body.terrain) { doc.terrain = req.body.terrain }
+    const response = await doc.save();
     res.status(200).json(response);
   } catch (err) {
     if (err.name === "CastError") {
@@ -79,7 +89,6 @@ const updateBike = async (req, res) => {
 };
 
 const deleteBike = async (req, res) => {
-  console.log("deleteBike")
   if (!ObjectId.isValid(req.params)) {
     res.status(400).json("Must use a valid Motorcycle ID.")
   }
@@ -87,7 +96,6 @@ const deleteBike = async (req, res) => {
   try {
     Bike.deleteOne({ _id: bikeId }, function (err, response) {
       if (err) {
-        console.log("Error1")
         res(500).json(err);
       }
       if (response.deletedCount > 0) {

@@ -118,6 +118,39 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "make": {
+                  "example": "any"
+                },
+                "model": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "motor": {
+                  "example": "any"
+                },
+                "displacement": {
+                  "example": "any"
+                },
+                "transmission": {
+                  "example": "any"
+                },
+                "drive": {
+                  "example": "any"
+                },
+                "terrain": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -126,6 +159,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
