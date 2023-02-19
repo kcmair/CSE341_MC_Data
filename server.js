@@ -1,12 +1,18 @@
 const express = require("express");
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 const morgan = require('morgan')
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 const app = express();
+const passport = require('passport');
+const session = require('express-session');
+
+dotenv.config({path: './config/.env'});
 const uri = process.env.CONNECTION_STRING;
+
+require('./config/passport')(passport);
 
 app
   .use(bodyParser.json())
@@ -19,7 +25,14 @@ app
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
   })
-  .use("/", require("./routes"));
+  .use("/", require("./routes"))
+  .use(session({
+    secret: 'send it',
+    resave: false,
+    saveUninitialized: false,
+  }))
+  .use(passport.initialize())
+  .use(passport.session())
 
 mongoose.set('strictQuery', true)
 const options = {
