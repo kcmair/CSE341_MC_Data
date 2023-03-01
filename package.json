@@ -1,5 +1,5 @@
 {
-  "name": "mc-database",
+  "name": "iron-horse-database",
   "version": "1.0.0",
   "description": "A database for Motorcycles",
   "main": "server.js",
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.3",
+    "express-handlebars": "^6.0.7",
     "express-session": "^1.17.3",
     "express-validator": "^6.14.3",
     "mongodb": "^4.13.0",
@@ -26,7 +27,15 @@
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
     "swagger-autogen": "^2.22.0"
   }
 }

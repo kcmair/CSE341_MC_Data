@@ -1,0 +1,10 @@
+{
+  "extends": ["airbnb-base", "prettier", "plugin:node/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "func-names": "off",
+    "class-methods-use-this": "off"
+  }
+}
