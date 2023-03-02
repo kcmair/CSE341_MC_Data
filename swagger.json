@@ -5,10 +5,10 @@
     "description": "A Database for Motorcycles",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-l08.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/api-docs": {

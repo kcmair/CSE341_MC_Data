@@ -5,10 +5,10 @@ const doc = {
     title: 'Iron-Horse Database',
     description: 'A Database for Motorcycles',
   },
-  host: 'localhost:8080',
-  schemes: ['http'],
-  // host: 'cse341-l6-um6z.onrender.com',
-  // schemes: ['https']
+  // host: 'localhost:8080',
+  // schemes: ['http'],
+  host: 'cse341-l08.onrender.com',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';
