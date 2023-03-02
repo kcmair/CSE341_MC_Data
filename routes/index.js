@@ -8,5 +8,4 @@ router
   .use('/auth', require('./auth'))
   .use('/api-docs', swaggerUi.serve)
   .get('/api-docs', swaggerUi.setup(swaggerDocument));
-
 module.exports = router;
