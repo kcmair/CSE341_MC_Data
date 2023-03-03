@@ -1,5 +1,6 @@
 const ObjectId = require('mongodb').ObjectId;
 const Bike = require('../models/bikes');
+const User = require('../models/User');
 
 const returnAllBikes = async (req, res) => {
   try {
@@ -130,10 +131,37 @@ const deleteBike = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const userId = new ObjectId(req.user.id);
+  try {
+    let doc = await User.findOne(userId);
+    if (!doc) {
+      res.status(404).json(`User with ID ${userId} not found.`);
+    }
+    if (req.body.displayName) {
+      doc.displayName = req.body.displayName;
+    }
+    if (req.body.firstName) {
+      doc.firstName = req.body.firstName;
+    }
+    if (req.body.lastName) {
+      doc.lastName = req.body.lastName;
+    }
+    await doc.save();
+    res.status(204).json();
+  } catch (err) {
+    if (err.name === 'CastError') {
+      res.status(400).json(err.message);
+    }
+    res.status(500).json(err);
+  }
+};
+
 module.exports = {
   returnAllBikes,
   findBikeById,
   createBike,
   updateBike,
   deleteBike,
+  updateUser,
 };

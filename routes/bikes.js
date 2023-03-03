@@ -6,6 +6,7 @@ router
   .get('/', bikesController.returnAllBikes)
   .get('/:id', bikesController.findBikeById)
   .post('/', validation.validateBike, bikesController.createBike)
+  .put('/user', bikesController.updateUser)
   .put('/:id', validation.validateBike, bikesController.updateBike)
   .delete('/:id', bikesController.deleteBike);
 
